@@ -4,6 +4,7 @@ const colors=require('colors');
 const morgan=require('morgan');
 const cors = require('cors');
 const transactions=require('./routes/transactions');
+const user=require('./routes/user');
 const connectDB=require('./config/db');
 
 dotenv.config({path: './config/config.env'});
@@ -20,7 +21,7 @@ if(process.env.NODE_ENV === 'development')
 }
 
 
-
+app.use('/api/v1/user',user);
 app.use('/api/v1/transactions', transactions);  
 app.get('/', (req,res)=>res.send('Hello ashu'));
 
