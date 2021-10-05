@@ -33,7 +33,6 @@ exports.signup = async (req,res,next)=>{
             user:doc,
         })
 
-
     } catch (error) {
         res.status(500).json({
             succes:false,
