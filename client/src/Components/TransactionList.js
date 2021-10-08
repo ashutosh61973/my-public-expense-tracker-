@@ -2,10 +2,14 @@ import React from 'react'
 import { useContext,useEffect } from 'react';
 import { GlobalContext } from '../Context/GlobalState'
 import Transaction from './Transaction';
-const TransactionList = () => {
+const TransactionList = ({history}) => {
     const {transactions,getTransactions} = useContext(GlobalContext);
 
     useEffect(() => {
+        
+        // if(!localStorage.getItem("authToken")){
+        //     history.push("/login");
+        // }
         getTransactions();
         //eslint-disable-next-line 
     }, []);

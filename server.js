@@ -6,7 +6,7 @@ const cors = require('cors');
 const transactions=require('./routes/transactions');
 const user=require('./routes/user');
 const connectDB=require('./config/db');
-
+const errorHandler=require('./middlewares/error');
 dotenv.config({path: './config/config.env'});
 
 connectDB();
@@ -21,9 +21,11 @@ if(process.env.NODE_ENV === 'development')
 }
 
 
-app.use('/api/v1/user',user);
+app.use('/api/user',user);
 app.use('/api/v1/transactions', transactions);  
 app.get('/', (req,res)=>res.send('Hello ashu'));
+
+app.use(errorHandler);
 
 const PORT=process.env.PORT || 5000;
 

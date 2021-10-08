@@ -1,7 +1,7 @@
 const express = require('express');
 const router=express.Router();
-
-const {signup,login,forgotpassword,resetpassword}=require('../controllers/user');
+const {protect} =require('../middlewares/auth');
+const {signup,login,forgotpassword,resetpassword,getdata}=require('../controllers/user');
 
 
 
@@ -23,5 +23,9 @@ router
 router
 .route('/resetpassword/:resetToken')
 .put(resetpassword); 
+
+router
+.route('/getdata')
+.get(protect,getdata);
 
 module.exports=router;
