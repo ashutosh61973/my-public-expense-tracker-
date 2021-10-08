@@ -1,6 +1,8 @@
 import React, {createContext,useReducer} from "react";
 import AppReducer from './AppReducer'
 import axios from 'axios';
+// import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // initial state
 const initialState ={
     transactions:[
@@ -19,9 +21,21 @@ export const GlobalProvider = ({children})=>{
     const [state,dispatch] = useReducer(AppReducer,initialState);
 
     // action 
+    let history=useHistory();
     async function getTransactions(){
+        if(!localStorage.getItem('authToken'))
+        {
+            history.push('/home');
+        }
+        const config ={
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+            }
+        }
+        console.log(config.headers.Authorization);
         try {
-            const res= await axios.get('/api/v1/transactions');
+            const res= await axios.get('/api/v1/transactions',config);
             
             dispatch({
                 type:'GET_TRANSACTIONS',
@@ -29,7 +43,7 @@ export const GlobalProvider = ({children})=>{
             });
 
         } catch (err) {
-            
+            localStorage.removeItem("authToken");
             dispatch({
                 type:'TRANSACTION_ERROR',
                 payload:err.response.data.error
@@ -40,9 +54,24 @@ export const GlobalProvider = ({children})=>{
 
     //ACTION
     async function deleteTransaction(id){
+       
+       
+       
+        if(!localStorage.getItem('authToken'))
+        {
+             history.push('/login');
+            
+        }
+        const config ={
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+            }
+        }
+       
         try {
         
-            await axios.delete(`/api/v1/transactions/${id}`); 
+            await axios.delete(`/api/v1/transactions/${id}`,config); 
         
             dispatch({
                 type:"DELETE_TRANSACTION",
@@ -50,7 +79,7 @@ export const GlobalProvider = ({children})=>{
             });
         
         } catch (err) {
-            
+            localStorage.removeItem("authToken");
             dispatch({
                 type:'TRANSACTION_ERROR',
                 payload:err.response.data.error
@@ -62,13 +91,18 @@ export const GlobalProvider = ({children})=>{
     
     async  function addTransaction(transaction){
         
-        const config={
+        if(!localStorage.getItem('authToken'))
+        {
+             history.push('/login');
+           
+        }
+        const config ={
             headers:{
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
             }
         }
-
-        
+        console.log("i am adder");
         try {
             
             const res= await axios.post('/api/v1/transactions',transaction,config);
@@ -79,6 +113,7 @@ export const GlobalProvider = ({children})=>{
             });
         }
         catch(err){
+            localStorage.removeItem("authToken");
             dispatch({
                 type:'TRANSACTION_ERROR',
                 payload:err.response.data.error

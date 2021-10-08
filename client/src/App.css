@@ -7,8 +7,10 @@
 * {
   box-sizing: border-box;
 }
-
-body {
+.App {
+  padding: 50px;
+}
+.appouter {
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
