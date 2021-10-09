@@ -1,6 +1,10 @@
 # expense-tracker-AshutoshDixit
 
-#this is full stack app
+![wave](https://user-images.githubusercontent.com/56062825/136648099-52c72794-8bf6-48be-9acd-df31c0cb3a41.png)
+
+
+
+<h1>this is full stack app</h1>
 <br></br>
 
 <h2>stacks</h2><br></br>
@@ -50,3 +54,6 @@ This is a <b><i>EXPENSE-TRACKER</i></b> basically it keeps track of your expense
 ![image](https://user-images.githubusercontent.com/56062825/136647833-520c99be-e1ba-43bc-baaf-5fedd1504c50.png)
 
 
+
+
+![wave](https://user-images.githubusercontent.com/56062825/136648099-52c72794-8bf6-48be-9acd-df31c0cb3a41.png)
