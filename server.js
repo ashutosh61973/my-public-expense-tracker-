@@ -6,6 +6,7 @@ const cors = require('cors');
 const transactions=require('./routes/transactions');
 const user=require('./routes/user');
 const connectDB=require('./config/db');
+const path = require('path');
 const errorHandler=require('./middlewares/error');
 dotenv.config({path: './config/config.env'});
 
