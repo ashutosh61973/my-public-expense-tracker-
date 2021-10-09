@@ -17,8 +17,6 @@
 </ul>
 
 
-
-
 <ul>
 <li>FULL AUTHENTICATION</li> <br></br>
 <li>FULLY CONNECTED TO BACKEND</li> <br></br>
